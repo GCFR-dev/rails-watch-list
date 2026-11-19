@@ -1,0 +1,23 @@
+.card-list {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 16px;
+  font-family: $headers-font;
+  font-size: 20px;
+  transition: transform 0.2s;
+
+  a {
+    color: $dark;
+    text-decoration: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+
+    a {
+      color: $accent;
+    }
+  }
+}

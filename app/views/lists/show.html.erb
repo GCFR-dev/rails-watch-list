@@ -1,10 +1,26 @@
 <h1><%= @list.name %></h1>
-<% @list.bookmarks.each do |bookmark| %>
-  <p>
-    <%= bookmark.movie.title %> : <%= bookmark.comment %>
-    <%= link_to "Supprimer", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Supprimer ce film de la liste ?" } %>
-  </p>
-<% end %>
+
+<div class="row">
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="col-12 col-md-4 col-lg-3 mb-4">
+      <div class="card-movie">
+        <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title %>
+        <div class="card-movie-infos">
+          <h3><%= bookmark.movie.title %></h3>
+          <p class="rating"><i class="fa-solid fa-star"></i> <%= bookmark.movie.rating %></p>
+          <p><%= bookmark.comment %></p>
+          <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Supprimer ce film de la liste ?" }, class: "text-danger" do %>
+            <i class="fa-solid fa-trash"></i> Supprimer
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to "Ajouter un film", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-<%= link_to "Retour aux listes", lists_path %>
+<div class="mt-4">
+  <%= link_to lists_path, class: "btn btn-outline-secondary btn-sm" do %>
+    <i class="fa-solid fa-arrow-left"></i> Retour aux listes
+  <% end %>
+</div>
